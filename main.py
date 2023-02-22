@@ -15,7 +15,6 @@ val_texts, val_labels = zip(*((sample['text'], sample['sentiment']) for sample i
 test_texts, test_labels = zip(*((sample['text'], sample['sentiment']) for sample in test_data))
 
 dictionary = p1.bag_of_words(train_texts)
-
 train_bow_features = p1.extract_bow_feature_vectors(train_texts, dictionary)
 val_bow_features = p1.extract_bow_feature_vectors(val_texts, dictionary)
 test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
@@ -117,8 +116,8 @@ print(p1.accuracy(predict, test_labels))
 # accurate algorithm with the optimal choice of hyperparameters.
 #-------------------------------------------------------------------------------
 
-best_theta = theta # Your code here
-wordlist   = [word for (idx, word) in sorted(zip(dictionary.values(), dictionary.keys()))]
-sorted_word_features = utils.most_explanatory_word(best_theta, wordlist)
-print("Most Explanatory Word Features")
-print(sorted_word_features[:10])
+# best_theta = theta # Your code here
+# wordlist   = [word for (idx, word) in sorted(zip(dictionary.values(), dictionary.keys()))]
+# sorted_word_features = utils.most_explanatory_word(best_theta, wordlist)
+# print("Most Explanatory Word Features")
+# print(sorted_word_features[:10])

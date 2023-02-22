@@ -353,10 +353,15 @@ def bag_of_words(texts):
     """
     # Your code here
     dictionary = {} # maps word to unique index
+    stopword=[]
+    f= open('stopwords.txt', 'r')
+    for word in f.readlines():
+        word=word.strip()
+        stopword.append(word)
     for text in texts:
         word_list = extract_words(text)
         for word in word_list:
-            if word not in dictionary:
+            if word not in dictionary and word not in stopword:
                 dictionary[word] = len(dictionary)
     return dictionary
 
@@ -378,9 +383,15 @@ def extract_bow_feature_vectors(reviews, dictionary):
 
     for i, text in enumerate(reviews):
         word_list = extract_words(text)
+        dict={}
         for word in word_list:
             if word in dictionary:
-                feature_matrix[i, dictionary[word]] = 1
+                if word not in dict:
+                    dict[word] = 1
+                else:
+                    dict[word] += 1
+                feature_matrix[i, dictionary[word]] = dict[word]
+        print(dict)
     return feature_matrix
 
 
